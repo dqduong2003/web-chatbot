@@ -2,12 +2,13 @@ let conversationId = null;
 
 async function startConversation() {
     try {
-        const res = await fetch('http://localhost:3000/start', {
+        const res = await fetch('/api/start', {
             method: 'POST'
         });
         const data = await res.json();
         conversationId = data.conversation_id;
     } catch (err) {
+        console.error('Failed to start a new conversation:', err);
         alert('Failed to start a new conversation.');
     }
 }
@@ -38,7 +39,7 @@ chatForm.addEventListener('submit', async (e) => {
     userInput.value = '';
     appendMessage('bot', '...'); // Loading indicator
     try {
-        const res = await fetch('http://localhost:3000/chat', {
+        const res = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message, conversation_id: conversationId })
@@ -48,6 +49,7 @@ chatForm.addEventListener('submit', async (e) => {
         chatWindow.removeChild(chatWindow.lastChild);
         appendMessage('bot', data.reply);
     } catch (err) {
+        console.error('Chat error:', err);
         chatWindow.removeChild(chatWindow.lastChild);
         appendMessage('bot', 'Sorry, there was an error.');
     }

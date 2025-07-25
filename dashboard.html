@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 24px; }
+        .conversation-list { list-style: none; padding: 0; }
+        .conversation-list li { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; transition: background 0.2s; }
+        .conversation-list li:hover { background: #f0f4ff; }
+        .delete-btn { padding: 6px 14px; border: none; border-radius: 6px; background: #dc3545; color: #fff; font-size: 14px; cursor: pointer; transition: background 0.2s; margin-left: 16px; }
+        .delete-btn:hover { background: #b52a37; }
+        .analyze-btn { padding: 6px 14px; border: none; border-radius: 6px; background: #17a2b8; color: #fff; font-size: 14px; cursor: pointer; transition: background 0.2s; margin-left: 8px; }
+        .analyze-btn:hover { background: #117a8b; }
+        .messages-view { margin-top: 24px; }
+        .back-btn { margin-bottom: 16px; padding: 8px 16px; border: none; border-radius: 6px; background: #007bff; color: #fff; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <button class="back-btn" onclick="window.location='index.html'">Return to Chat</button>
+        <h2>Conversation Dashboard</h2>
+        <div style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+            <label>Industry:
+                <select id="filter-industry"><option value="">All</option></select>
+            </label>
+            <label>Consultation Booked:
+                <select id="filter-consultation">
+                    <option value="">All</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </label>
+            <label>Lead Quality:
+                <select id="filter-leadquality">
+                    <option value="">All</option>
+                    <option value="good">Good</option>
+                    <option value="ok">OK</option>
+                    <option value="spam">Spam</option>
+                </select>
+            </label>
+        </div>
+        <ul id="conversation-list" class="conversation-list"></ul>
+        <div id="messages-view" class="messages-view"></div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html> 
