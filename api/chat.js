@@ -1,9 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-import axios from 'axios';
+const { createClient } = require('@supabase/supabase-js');
+const axios = require('axios');
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -51,4 +51,4 @@ export default async function handler(req, res) {
     console.error('OpenAI API error:', error.response?.data || error.message);
     res.status(500).json({ reply: 'Sorry, I could not process your request.' });
   }
-} 
+}; 

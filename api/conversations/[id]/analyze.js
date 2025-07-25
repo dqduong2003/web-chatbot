@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-import axios from 'axios';
+const { createClient } = require('@supabase/supabase-js');
+const axios = require('axios');
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
@@ -31,7 +31,7 @@ Format the response using this JSON schema:
 }
 If the user provided contact details, set lead quality to "good"; otherwise, "spam".`;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { id } = req.query;
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
@@ -96,4 +96,4 @@ export default async function handler(req, res) {
     console.error('OpenAI analysis error:', err.response?.data || err.message);
     res.status(500).json({ error: 'Failed to analyze conversation.' });
   }
-} 
+}; 
